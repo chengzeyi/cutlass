@@ -245,7 +245,8 @@ protected:
         arguments->ldb, arguments->batch_stride_B);
     operator_args.epilogue.dC = cute::make_int_tuple_from<typename Operator::GemmKernel::StrideC>(
         arguments->ldc, arguments->batch_stride_C);
-    operator_args.epilogue.dD = operator_args.epilogue.dC;
+    operator_args.epilogue.dD = cute::make_int_tuple_from<typename Operator::GemmKernel::StrideC>(
+        arguments->ldd, arguments->batch_stride_D);
 
     /* Query device SM count to pass onto the kernel as an argument, where needed */
     operator_args.hw_info.sm_count = arguments->sm_count;
